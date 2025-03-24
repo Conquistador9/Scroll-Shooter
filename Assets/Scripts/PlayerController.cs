@@ -4,13 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{/*
-    [Header("Components")]
-    [SerializeField] private GameObject _playerIdle;
-    [SerializeField] private GameObject _playerRun;
-    [SerializeField] private GameObject _playerLadder;
-    [SerializeField] private GameObject _playerJump;
-*/
+{
     [Header("Settings")]
     [Range(0,10)]
     [SerializeField] private float _runSpeed, _liftSpeed, _jump;
@@ -39,34 +33,28 @@ public class PlayerController : MonoBehaviour
         else if(horizontal < 0)
         {
             _playerRevers.ReversLeft();
-        }
+        } 
 /*
-        if(vertical > 0)
-        {
-            _playerIdle.SetActive(false);
-            _playerRun.SetActive(false);
-            _playerLadder.SetActive(true);
-        }
-*/
-        if (_rb.velocity.magnitude == 0f)// && _rb.angularVelocity == 0f)
+        if (_rb.velocity.magnitude <= 0.01f && _isGrounded)
         {
             _playerState.Idle();
-     //       _playerIdle.SetActive(true);
-       //     _playerRun.SetActive(false);
+        }
+*/
+        if (Mathf.Abs(_rb.velocity.magnitude) > 0.01f && _isGrounded)
+        {
+            _playerState.Run();
         }
         else
         {
-            _playerState.Run();
-            //           _playerIdle.SetActive(false);
-            //         _playerRun.SetActive(true);
+            _playerState.Idle();
         }
-        Jump();
+            Jump();
         CheckAir();
     }
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector2((Input.GetAxisRaw("Horizontal") * _runSpeed), _rb.velocity.y);   //, Input.GetAxisRaw("Vertical") * _liftSpeed);
+        _rb.velocity = new Vector2((Input.GetAxisRaw("Horizontal") * _runSpeed), _rb.velocity.y);
     }
 
     public void Jump()
@@ -76,10 +64,6 @@ public class PlayerController : MonoBehaviour
             _rb.AddForce(Vector2.up * _jump, ForceMode2D.Impulse);
             _isGrounded = false;
             _isAir = true;
-            _playerState.Jump();
-//            _playerJump.SetActive(true);
- //           _playerIdle.SetActive(false);
-  //          _playerRun.SetActive(false);
         }
     }
 
