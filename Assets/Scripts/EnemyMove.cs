@@ -4,28 +4,19 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    [SerializeField] private Transform startPoint;
-    [SerializeField] private Transform endPoint;
-
-    // Скорость движения объекта
-    [SerializeField] private float speed = 5f;
-
-    // Флаг для определения направления движения
-    private bool movingForward = true;
+    [SerializeField] private Transform _startPoint;
+    [SerializeField] private Transform _endPoint;
+    [SerializeField] private float _speed;
+    private bool _isMoving = true;
 
     void Update()
     {
-        // Вычисляем направление движения
-        Vector3 targetPosition = movingForward ? endPoint.position : startPoint.position;
+        Vector3 targetPosition = _isMoving ? _endPoint.position : _startPoint.position;
+        transform.position = Vector2.MoveTowards(transform.position, targetPosition, _speed * Time.deltaTime);
 
-        // Перемещаем объект к целевой точке
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-
-        // Проверяем, достиг ли объект целевой точки
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
-            // Разворачиваем объект и меняем направление движения
-            movingForward = !movingForward;
+            _isMoving = !_isMoving;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }

@@ -44,10 +44,21 @@ public class PlayerController : MonoBehaviour
         {
             _playerState.Run();
         }
+        else if (Input.GetButtonDown("Fire1") && _rb.velocity.magnitude == 0)
+        {
+            _playerState.Shoot();
+        }
         else
         {
             _playerState.Idle();
         }
+/*
+        if (Input.GetButtonDown("Fire1"))
+        {
+            _playerState.Shoot();
+        }
+*/
+
             Jump();
         CheckAir();
     }
