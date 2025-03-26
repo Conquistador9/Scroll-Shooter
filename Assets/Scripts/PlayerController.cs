@@ -7,8 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Settings")]
     [Range(0,10)]
-    [SerializeField] private float _runSpeed, _liftSpeed, _jump;
-    private PlayerState _playerState;
+    [SerializeField] private float _runSpeed, _jump;
+    private PlayerShoot _playerShoot;
+    private PlayerAnimations _anims;
     private Rigidbody2D _rb;
     private PlayerRevers _playerRevers;
     private bool _isGrounded = true;
@@ -16,54 +17,41 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _playerState = GetComponent<PlayerState>();
+        _playerShoot = GetComponent<PlayerShoot>();
         _rb = GetComponent<Rigidbody2D>();
         _playerRevers = GetComponent<PlayerRevers>();
+        _anims = GetComponent<PlayerAnimations>();
     }
 
     private void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
 
         if(horizontal > 0)
         {
             _playerRevers.ReversRight();
+            _playerShoot.EnergySpriteRight();
         }
         else if(horizontal < 0)
         {
             _playerRevers.ReversLeft();
+            _playerShoot.EnergySpriteLeft();
         } 
-/*
-        if (_rb.velocity.magnitude <= 0.01f && _isGrounded)
-        {
-            _playerState.Idle();
-        }
-*/
-        if (Mathf.Abs(_rb.velocity.magnitude) > 0.01f && _isGrounded)
-        {
-            _playerState.Run();
-        }
-        else if (Input.GetButtonDown("Fire1") && _rb.velocity.magnitude == 0)
-        {
-            _playerState.Shoot();
-        }
+
+        if (Mathf.Abs(_rb.velocity.magnitude) > 0.01f && _isGrounded) _anims.Walk();
         else
         {
-            _playerState.Idle();
+            _anims.Idle();
+            _anims.JumpOf();
         }
-/*
-        if (Input.GetButtonDown("Fire1"))
-        {
-            _playerState.Shoot();
-        }
-*/
+
+        if (Input.GetButtonDown("Fire1")) _playerShoot.Shoot(horizontal);
 
             Jump();
         CheckAir();
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() 
     {
         _rb.velocity = new Vector2((Input.GetAxisRaw("Horizontal") * _runSpeed), _rb.velocity.y);
     }
@@ -84,6 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             _isGrounded = true;
             _isAir = false;
+            _anims.JumpOf();
         }
     }
 
@@ -93,11 +82,8 @@ public class PlayerController : MonoBehaviour
         _isAir = true;
     }
 
-    private void CheckAir()
+    private void CheckAir() 
     {
-        if (_isAir)
-        {
-            _playerState.Jump();
-        }
+        if (_isAir) _anims.Jump();
     }
 }
