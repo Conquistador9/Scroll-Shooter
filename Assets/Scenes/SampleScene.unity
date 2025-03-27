@@ -1652,6 +1652,7 @@ GameObject:
   - component: {fileID: 298478053}
   - component: {fileID: 298478054}
   - component: {fileID: 298478055}
+  - component: {fileID: 298478056}
   m_Layer: 0
   m_Name: hero
   m_TagString: Player
@@ -1876,6 +1877,18 @@ MonoBehaviour:
   _fireEnergy: {fileID: 4794923887278381440, guid: 357b6fcbe7413ba45b9857d412bc34a4, type: 3}
   _energyPoint: {fileID: 843623464}
   _energySpeed: 15
+--- !u!114 &298478056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298478045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44c05d5a7780774a83f02526fc96e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &301306487
 GameObject:
   m_ObjectHideFlags: 0
@@ -3865,6 +3878,8 @@ GameObject:
   - component: {fileID: 677838948}
   - component: {fileID: 677838949}
   - component: {fileID: 677838950}
+  - component: {fileID: 677838951}
+  - component: {fileID: 677838952}
   m_Layer: 0
   m_Name: slime1
   m_TagString: Enemy
@@ -4033,6 +4048,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyCollected: {fileID: 1655293837}
+--- !u!114 &677838951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677838944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44c05d5a7780774a83f02526fc96e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &677838952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677838944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb879e1b443b2714aaaa02b9b7579c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &686360430
 GameObject:
   m_ObjectHideFlags: 0
@@ -7951,6 +7990,7 @@ GameObject:
   - component: {fileID: 1419404808}
   - component: {fileID: 1419404809}
   - component: {fileID: 1419404810}
+  - component: {fileID: 1419404811}
   m_Layer: 0
   m_Name: lizard-shoot1
   m_TagString: Enemy
@@ -8120,6 +8160,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17263383, y: 0.24474932}
   m_EdgeRadius: 0
+--- !u!114 &1419404811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419404804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44c05d5a7780774a83f02526fc96e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1427156633
 GameObject:
   m_ObjectHideFlags: 0

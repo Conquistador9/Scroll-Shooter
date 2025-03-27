@@ -9,6 +9,7 @@ public class EnemyAttack : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(_damage);
+            collision.GetComponent<DamageColor>().ChangeColor();
         }
     }
 }
