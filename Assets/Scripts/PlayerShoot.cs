@@ -9,7 +9,7 @@ public class PlayerShoot : MonoBehaviour
     [Header("Setting")]
     [SerializeField] private float _energySpeed;
 
-    private void Awake()
+    private void Start()
     {
         EnergySpriteRight();
     }

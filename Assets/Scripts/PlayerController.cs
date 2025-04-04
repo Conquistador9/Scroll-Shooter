@@ -44,9 +44,6 @@ public class PlayerController : MonoBehaviour
             _anims.Idle();
             _anims.JumpOf();
         }
-
-        if (Input.GetButtonDown("Fire1")) _playerShoot.Shoot(horizontal);
-
             Jump();
         CheckAir();
     }
