@@ -5,14 +5,16 @@ public class PlayerShoot : MonoBehaviour
     [Header("Components")]
     [SerializeField] private GameObject _fireEnergy;
     [SerializeField] private Transform _energyPoint;
-    private AudioSource _audioSource;
+    private AudioClips _clips;
+ //   private AudioSource _audioSource;
 
     [Header("Setting")]
     [SerializeField] private float _energySpeed;
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
+        _clips = GetComponent<AudioClips>();
+ //       _audioSource = GetComponent<AudioSource>();
         EnergySpriteRight();
     }
 
@@ -29,7 +31,8 @@ public class PlayerShoot : MonoBehaviour
         else line = _energyPoint.right;
 
         currentBulletVelocity.GetComponent<Rigidbody2D>().velocity = line * _energySpeed;
-        _audioSource.Play();
+        _clips.ShootClip();
+  //      _audioSource.Play();
     }
 
     public void EnergySpriteRight() => _fireEnergy.GetComponent<SpriteRenderer>().flipX = false;
