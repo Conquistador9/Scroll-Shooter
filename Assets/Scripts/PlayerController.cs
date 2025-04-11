@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private PlayerAnimations _anims;
     private Rigidbody2D _rb;
     private PlayerRevers _playerRevers;
+    private JumpAudio _jumpAudio;
     private bool _isGrounded = true;
     private bool _isAir = false;
 
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _playerRevers = GetComponent<PlayerRevers>();
         _anims = GetComponent<PlayerAnimations>();
+        _jumpAudio = GetComponent<JumpAudio>();
     }
 
     private void Update()
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
             _isGrounded = true;
             _isAir = false;
             _anims.JumpOf();
+            _jumpAudio.OffJumpAudio();
         }
     }
 
@@ -77,10 +80,14 @@ public class PlayerController : MonoBehaviour
     {
         _isGrounded = false;
         _isAir = true;
+        _jumpAudio.OnJumpAudio();
     }
 
     private void CheckAir() 
     {
-        if (_isAir) _anims.Jump();
+        if (_isAir)
+        {
+            _anims.Jump();
+        }
     }
 }

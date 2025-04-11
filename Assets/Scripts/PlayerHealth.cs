@@ -6,13 +6,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private TMP_Text _healthText;
-    private AudioClips _clips;
+    private PlayerDamageAudio _damageAudio;
     private int _maxHealth = 100;
     private int _currentHealth;
 
     private void Start()
     {
-        _clips = GetComponent<AudioClips>();
+        _damageAudio = GetComponent<PlayerDamageAudio>();
         _currentHealth = _maxHealth;
     }
 
@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
-        _clips.DamageClip();
+        _damageAudio.DamageAudio();
 
         if(_currentHealth <= 0)
         {
