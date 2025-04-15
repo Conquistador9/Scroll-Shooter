@@ -15,4 +15,9 @@ public class JumpAudio : MonoBehaviour
     {
         _audioSource.Stop();
     }
+
+    public void AudioMute()
+    {
+        _audioSource.mute = true;
+    }
 }

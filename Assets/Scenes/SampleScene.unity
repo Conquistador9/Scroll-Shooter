@@ -2698,6 +2698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthText: {fileID: 103244927}
+  _jumpAudioObject: {fileID: 1024266849}
 --- !u!114 &298478055
 MonoBehaviour:
   m_ObjectHideFlags: 0

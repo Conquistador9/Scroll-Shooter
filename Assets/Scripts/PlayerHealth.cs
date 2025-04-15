@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private TMP_Text _healthText;
+    [SerializeField] private GameObject _jumpAudioObject;
+    private Rigidbody2D _rb;
+    private SpriteRenderer _spriteRenderer;
+    private CapsuleCollider2D _capsuleCollider;
     private PlayerDamageAudio _damageAudio;
+    private JumpAudio _jumpAudio;
+    private PlayerController _playerController;
     private int _maxHealth = 100;
     private int _currentHealth;
 
     private void Start()
     {
+        _rb = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _capsuleCollider = GetComponent<CapsuleCollider2D>();
         _damageAudio = GetComponent<PlayerDamageAudio>();
+        _jumpAudio = GetComponent<JumpAudio>();
+        _playerController = GetComponent<PlayerController>();
         _currentHealth = _maxHealth;
     }
 
@@ -29,7 +41,13 @@ public class PlayerHealth : MonoBehaviour
         if(_currentHealth <= 0)
         {
             _currentHealth = 0;
-            Destroy(gameObject, 0.2f);
+            _playerController.enabled = false;
+            _jumpAudio.AudioMute();
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            StartCoroutine(DeactivePlayer());
+            _spriteRenderer.enabled = false;
+            _capsuleCollider.enabled = false;
+            Destroy(gameObject, 2f);
         }
     }
 
@@ -41,5 +59,11 @@ public class PlayerHealth : MonoBehaviour
         {
             _currentHealth = _maxHealth;
         }
+    }
+
+    private IEnumerator DeactivePlayer()
+    {
+        yield return new WaitForSeconds(0.2f);
+        gameObject.SetActive(false);
     }
 }
