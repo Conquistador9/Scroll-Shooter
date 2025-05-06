@@ -23,12 +23,14 @@ public class SettingsPanel : MonoBehaviour
     private IEnumerator DelaySetting()
     {
         yield return new WaitForSeconds(0.3f);
-        _panel.SetActive(true);
+        _panel.transform.SetAsLastSibling();
+   //     _panel.SetActive(true);
     }
 
     private IEnumerator DelayOffSettings()
     {
-        yield return new WaitForSeconds(0.3f);
-        _panel.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
+        _panel.transform.transform.SetAsFirstSibling();
+        //      _panel.SetActive(false);
     }
 }
