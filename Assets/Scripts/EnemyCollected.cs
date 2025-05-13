@@ -17,6 +17,11 @@ public class EnemyCollected : MonoBehaviour
     {
         _enemyCount++;
         EnemyCountText();
+
+        if(_enemyCount == 4)
+        {
+
+        }
     }
 
     private void EnemyCountText()

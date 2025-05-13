@@ -15,4 +15,9 @@ public class PlayerShootAudio : MonoBehaviour
     {
         _audioSource.Play();
     }
+
+    public void StopShootAudio()
+    {
+        _audioSource.Stop();
+    }
 }
