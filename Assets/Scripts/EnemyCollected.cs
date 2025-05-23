@@ -10,6 +10,7 @@ public class EnemyCollected : MonoBehaviour
     private int _enemyCount;
     private int _level = 1;
     private int _levelTwo = 2;
+    private int _levelThree = 3;
 
     private void Start()
     {
@@ -44,7 +45,7 @@ public class EnemyCollected : MonoBehaviour
         _enemyCountTextTwo.text = _enemyCount.ToString();
     }
 
-    private void SaveData()
+    public void SaveData()
     {
         PlayerPrefs.SetInt("EnemyCount", _enemyCount);
         PlayerPrefs.Save();
@@ -59,6 +60,10 @@ public class EnemyCollected : MonoBehaviour
             _enemyCount = 0;
         }
         else if(currentScene == _levelTwo)
+        {
+            _enemyCount = PlayerPrefs.GetInt("EnemyCount", 0);
+        }
+        else if(currentScene == _levelThree)
         {
             _enemyCount = PlayerPrefs.GetInt("EnemyCount", 0);
         }

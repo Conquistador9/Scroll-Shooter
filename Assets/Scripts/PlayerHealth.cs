@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] private EnemyCollected _enemyCollected;
     [SerializeField] private TMP_Text _healthText;
     [SerializeField] private GameObject _jumpAudioObject;
     private Rigidbody2D _rb;
@@ -47,7 +49,9 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(DeactivePlayer());
             _spriteRenderer.enabled = false;
             _capsuleCollider.enabled = false;
+            _enemyCollected.SaveData();
             Destroy(gameObject, 2f);
+            SceneManager.LoadScene(3);
         }
     }
 
